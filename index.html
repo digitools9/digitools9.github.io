@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        window.onload = function() {
+            // Array of server URLs
+            const servers = [
+                "https://digitools1.pythonanywhere.com",
+                "https://digitools2.pythonanywhere.com",
+                "https://digitools3.pythonanywhere.com",
+                "https://digitools4.pythonanywhere.com",
+                "https://digitools5.pythonanywhere.com",
+                "https://digitools6.pythonanywhere.com",
+                "https://digitools7.pythonanywhere.com",
+                "https://digitools8.pythonanywhere.com",
+                "https://digitools9.pythonanywhere.com"
+            ];
+            // Randomly select a server
+            const randomServer = servers[Math.floor(Math.random() * servers.length)];
+            // Redirect to the selected server
+            window.location.href = randomServer;
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
