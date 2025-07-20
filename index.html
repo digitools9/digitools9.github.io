@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecting...</title>
-    <script>
-        const servers = [
-            "https://digitools1.pythonanywhere.com",
-            "https://digitools2.pythonanywhere.com",
-            "https://digitools3.pythonanywhere.com",
-            "https://digitools4.pythonanywhere.com",
-            "https://digitools5.pythonanywhere.com",
-            "https://digitools6.pythonanywhere.com",
-            "https://digitools7.pythonanywhere.com",
-            "https://digitools8.pythonanywhere.com",
-            "https://digitools9.pythonanywhere.com"
-        ];
-        location.replace(servers[Math.floor(Math.random() * servers.length)]);
-    </script>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 20px;
+      font-family: sans-serif;
+    }
+  </style>
+  <script>
+    const servers = [
+      "https://digitools1.pythonanywhere.com",
+      "https://digitools2.pythonanywhere.com",
+      "https://digitools3.pythonanywhere.com",
+      "https://digitools4.pythonanywhere.com",
+      "https://digitools5.pythonanywhere.com",
+      "https://digitools6.pythonanywhere.com",
+      "https://digitools7.pythonanywhere.com",
+      "https://digitools8.pythonanywhere.com",
+      "https://digitools9.pythonanywhere.com"
+    ];
+
+    function tryNext(list) {
+      if (list.length === 0) {
+        document.body.innerText = "❌ No servers available.";
+        return;
+      }
+
+      const index = Math.floor(Math.random() * list.length);
+      const server = list[index];
+
+      const img = new Image();
+      img.onload = () => location.replace(server);
+      img.onerror = () => {
+        list.splice(index, 1);
+        tryNext(list);
+      };
+      img.src = server + "/favicon.ico?" + Date.now();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.innerText = "🚀 Allocating server...";
+      tryNext([...servers]);
+    });
+  </script>
 </head>
 <body>
 </body>
